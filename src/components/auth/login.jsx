@@ -73,7 +73,13 @@ const Login = () => {
             error={errors.password}
             withAsterisk
           />
-          <Button type="submit" color="#247e7d" w={350} className=" mt-5">
+          <Button
+            type="submit"
+            color="#247e7d"
+            w={350}
+            className=" mt-5"
+            onClick={'/dashboard'}
+          >
             SIGN IN
           </Button>
 

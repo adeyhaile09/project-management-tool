@@ -1,19 +1,13 @@
 import React from 'react';
 import { Box, Button, Text, TextInput } from '@mantine/core';
+import Header from '../layout/header';
+import Footer from '../layout/footer';
 
 const Home = () => {
   return (
     <div>
-      <Box
-        bg={'#deebff'}
-        className="w-full h-screen flex items-center justify-center"
-        h={'10vh'}
-      >
-        <Text className="text-center text-3xl font-bold " variant={''}>
-          Accelerate your teams' work with project management tool features 🤖
-          now in beta! Learn more.
-        </Text>
-      </Box>
+      <Header />
+
       <Box
         display={'flex'}
         // bg={'#ffa2e3'}
@@ -52,6 +46,7 @@ const Home = () => {
           }}
         ></Box>
       </Box>
+      <Footer />
     </div>
   );
 };

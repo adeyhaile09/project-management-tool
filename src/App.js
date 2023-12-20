@@ -1,7 +1,11 @@
 import './App.css';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
 import Login from './components/auth/login';
 import Register from './components/auth/register';
 import Reset from './components/auth/reset';
@@ -11,6 +15,8 @@ import CreateProject from './components/project/create-project';
 import Footer from './components/layout/footer';
 import Home from './components/home/home';
 import Header from './components/layout/header';
+import ProjectList from './components/project/project-list';
+import Dashboard from './components/dashboard/dashboard';
 
 const router = createBrowserRouter([
   {
@@ -42,13 +48,19 @@ const router = createBrowserRouter([
     path: '/project',
     element: <CreateProject />,
   },
+  {
+    path: '/project-list',
+    element: <ProjectList />,
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+  },
 ]);
 function App() {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Header />
       <RouterProvider router={router} />
-      <Footer />
     </MantineProvider>
   );
 }

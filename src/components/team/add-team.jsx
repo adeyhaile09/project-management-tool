@@ -1,6 +1,7 @@
-import { Button, Stack, TextInput } from '@mantine/core';
+import { Button, Modal, Stack, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 import { createTeam } from '../../config/firebase';
+import { useDisclosure } from '@mantine/hooks';
 
 const AddTeam = () => {
   const [teamName, setName] = useState('');
@@ -12,7 +13,7 @@ const AddTeam = () => {
   };
 
   return (
-    <Stack>
+    <>
       <form onSubmit={handleCreateTeam}>
         <TextInput
           name="teamName"
@@ -24,11 +25,11 @@ const AddTeam = () => {
             setName(e.target.value);
           }}
         />
-        <Button w={'100%'} type="submit" mt={10} color="#247e7d">
+        <Button w={'100%'} type="submit" color="#247e7d" mt={10}>
           Submit
         </Button>
       </form>
-    </Stack>
+    </>
   );
 };
 
