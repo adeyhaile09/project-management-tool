@@ -1,24 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from './components/auth/login';
+import Register from './components/auth/register';
+import Reset from './components/auth/reset';
+import CreateTeam from './components/team/create-team';
+import CreateWorkspace from './components/workspace/create-workspace';
+import CreateProject from './components/project/create-project';
+import Footer from './components/layout/footer';
+import Home from './components/home/home';
+import Header from './components/layout/header';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+  {
+    path: '/reset',
+    element: <Reset />,
+  },
+
+  {
+    path: '/team',
+    element: <CreateTeam />,
+  },
+  {
+    path: '/workspace',
+    element: <CreateWorkspace />,
+  },
+  {
+    path: '/project',
+    element: <CreateProject />,
+  },
+]);
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <Header />
+      <RouterProvider router={router} />
+      <Footer />
+    </MantineProvider>
   );
 }
 
