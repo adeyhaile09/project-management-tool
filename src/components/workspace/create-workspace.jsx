@@ -1,6 +1,6 @@
 import { Button, Text, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
-import { createWorkspace } from '../../firebase';
+import { createWorkspace } from '../../config/firebase';
 
 const CreateWorkspace = () => {
   const [name, setName] = useState('');

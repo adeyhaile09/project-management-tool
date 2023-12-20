@@ -1,6 +1,6 @@
 import { Button, Stack, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
-import { createTeam } from '../../firebase';
+import { createTeam } from '../../config/firebase';
 
 const AddTeam = () => {
   const [teamName, setName] = useState('');

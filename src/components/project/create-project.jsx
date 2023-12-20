@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, Text, TextInput, Textarea } from '@mantine/core';
-import { createProject } from '../../firebase';
+import { createProject } from '../../config/firebase';
 
 const CreateProject = () => {
   const [title, setTitle] = useState('');

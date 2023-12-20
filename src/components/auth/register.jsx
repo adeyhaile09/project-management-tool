@@ -13,7 +13,7 @@ import {
 } from '@mantine/core';
 import { IconAt } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
-import { auth, registerWithEmailAndPassword } from '../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../config/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Register = () => {

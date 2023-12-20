@@ -18,7 +18,7 @@ import {
   Link,
   useNavigate,
 } from 'react-router-dom';
-import { auth, logInWithEmailAndPassword } from '../../firebase';
+import { auth, logInWithEmailAndPassword } from '../../config/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Login = () => {
