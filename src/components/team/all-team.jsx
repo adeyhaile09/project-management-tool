@@ -2,37 +2,50 @@ import { Box, Button, Checkbox, Modal, Stack, Text } from '@mantine/core';
 import CreateTeam from './create-team';
 import { useDisclosure } from '@mantine/hooks';
 import { Table } from '@mantine/core';
-import { useState } from 'react';
-
-const elements = [
-  { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
-  { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-  { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-  { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
-  { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
-];
+import { useEffect, useState } from 'react';
+import { db } from '../../config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 function Teams() {
   const [openedT, { open: openT, close: closeT }] = useDisclosure(false);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [teamData, setTeamData] = useState([]);
 
-  const rows = elements.map((element) => (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'teams'));
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setTeamData(newData);
+        console.log(teamData, newData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const rows = teamData.map((element) => (
     <Table.Tr
       key={element.name}
       bg={
-        selectedRows.includes(element.position)
+        selectedRows.includes(element.name)
           ? 'var(--mantine-color-blue-light)'
           : undefined
       }
     >
       <Checkbox
         aria-label="Select row"
-        checked={selectedRows.includes(element.position)}
+        checked={selectedRows.includes(element.name)}
         onChange={(event) =>
           setSelectedRows(
             event.currentTarget.checked
-              ? [...selectedRows, element.position]
-              : selectedRows.filter((position) => position !== element.position)
+              ? [...selectedRows, element.name]
+              : selectedRows.filter((name) => name !== element.name)
           )
         }
       />

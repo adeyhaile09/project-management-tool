@@ -38,7 +38,7 @@ const CreateWorkspace = () => {
             <Button color="#f44336" variant="outline">
               Cancel
             </Button>
-            <Button type="submit" color="#247e7d" onClick={createWorkspace}>
+            <Button type="submit" color="#247e7d">
               Create
             </Button>
           </div>

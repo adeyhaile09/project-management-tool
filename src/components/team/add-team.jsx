@@ -1,8 +1,6 @@
-import { Button, Modal, Stack, TextInput, rem } from '@mantine/core';
+import { Button, TextInput, rem } from '@mantine/core';
 import React, { useState } from 'react';
 import { createTeam } from '../../config/firebase';
-import { useDisclosure } from '@mantine/hooks';
-import { useNavigate } from 'react-router-dom';
 import { IconAt } from '@tabler/icons-react';
 
 const AddTeam = () => {
@@ -10,14 +8,10 @@ const AddTeam = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [error] = useState({});
-  const navigate = useNavigate();
 
   const handleCreateTeam = (e) => {
     e.preventDefault();
     createTeam(name, email);
-  };
-  const handleClick = () => {
-    navigate('/all-team');
   };
 
   return (
@@ -44,13 +38,7 @@ const AddTeam = () => {
             setEmail(e.target.value);
           }}
         />
-        <Button
-          w={'100%'}
-          type="submit"
-          color="#247e7d"
-          mt={10}
-          // onClick={handleClick}
-        >
+        <Button w={'100%'} type="submit" color="#247e7d" mt={10}>
           Submit
         </Button>
       </form>

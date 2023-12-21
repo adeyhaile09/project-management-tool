@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import { Box, Card, Text } from '@mantine/core';
+import { Box, Button, Card, Modal, Text } from '@mantine/core';
+import CreateProject from './create-project';
+import { useDisclosure } from '@mantine/hooks';
 
 const ProjectList = () => {
   const [info, setInfo] = useState([]);
-
+  const [openedP, { open: openP, close: closeP }] = useDisclosure(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,9 +29,21 @@ const ProjectList = () => {
   return (
     <>
       <Box mt={20}>
-        <center>
-          <Text size="xl">Project Details</Text>
-        </center>
+        <Box className="flex">
+          <Text className="flex-1">Projects </Text>
+          <Button color="#f44336" variant="outline" onClick={openP}>
+            Create
+          </Button>
+          <Modal
+            size={'lg'}
+            centered
+            opened={openedP}
+            onClose={closeP}
+            withCloseButton={false}
+          >
+            <CreateProject />
+          </Modal>
+        </Box>
         <Box
           mt={30}
           ml={80}

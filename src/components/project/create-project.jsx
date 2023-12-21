@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, Text, TextInput, Textarea } from '@mantine/core';
+import { Box, Button, Text, TextInput, Textarea } from '@mantine/core';
 import { createProject } from '../../config/firebase';
-import ProjectList from './project-list';
-import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
   const [title, setTitle] = useState('');
   const [projectContent, setProjectContent] = useState('');
   const [error, setError] = useState({});
-  const navigate = useNavigate();
 
   const handleProject = (e) => {
     e.preventDefault();
     createProject(title, projectContent);
-  };
-  const handleProjectList = () => {
-    navigate('/project-list');
   };
 
   return (
@@ -49,13 +43,7 @@ const CreateProject = () => {
         />
       </Box>
 
-      <Button
-        w={'100%'}
-        type="submit"
-        mt={10}
-        color="#247e7d"
-        onClick={handleProjectList}
-      >
+      <Button w={'100%'} type="submit" mt={10} color="#247e7d">
         Create
       </Button>
     </form>

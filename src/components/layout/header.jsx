@@ -90,26 +90,26 @@ const Header = () => {
                 </List.Item>
                 <List.Item>
                   <a
-                    href="/project"
+                    href="#"
                     class=" hover:bg-gray-50  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2   "
                   >
-                    Projects
+                    Service
                   </a>
                 </List.Item>
                 <List.Item>
                   <a
-                    href="/workspace"
+                    href="#"
                     class=" hover:bg-gray-50  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2   "
                   >
-                    Workspace
+                    Feature
                   </a>
                 </List.Item>
                 <List.Item>
                   <a
-                    href="/team"
+                    href="#"
                     class=" hover:bg-gray-50  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2   "
                   >
-                    Teams
+                    Resource
                   </a>
                 </List.Item>
               </List>
