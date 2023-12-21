@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppShell, Burger, Button, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import CreateTeam from '../team/create-team';
 import CreateProject from '../project/create-project';
 import CreateWorkspace from '../workspace/create-workspace';
+import ProjectList from '../project/project-list';
+import Teams from '../team/all-team';
+import WorkspaceList from '../workspace/workspace-list';
 
 const Dashboard = () => {
   const [opened, { toggle }] = useDisclosure();
-  const [openedT, { open: openT, close: closeT }] = useDisclosure(false);
+
   const [openedP, { open: openP, close: closeP }] = useDisclosure(false);
   const [openedW, { open: openW, close: closeW }] = useDisclosure(false);
+
+  const [activeSection, setActiveSection] = useState('project');
+
+  const handleButtonClick = (section) => {
+    setActiveSection(section);
+  };
+
   return (
     <AppShell
       header={{ height: 60 }}
@@ -22,28 +32,19 @@ const Dashboard = () => {
     >
       <AppShell.Header bg={'#4c5156'}>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <a href="https://flowbite.com" class="flex items-center">
+        <a href="https://flowbite.com" className="flex items-center">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
-            class="mr-3 h-6 sm:h-9"
+            className="mr-3 h-6 sm:h-9"
             alt="Flowbite Logo"
           />
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white   ">
+          <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
             PMT
           </span>
         </a>
       </AppShell.Header>
 
       <AppShell.Navbar p="md " bg={'#4c5156'} className="text-white">
-        <Modal
-          size={'lg'}
-          centered
-          opened={openedT}
-          onClose={closeT}
-          withCloseButton={false}
-        >
-          <CreateTeam />
-        </Modal>
         <Modal
           size={'lg'}
           centered
@@ -68,7 +69,7 @@ const Dashboard = () => {
           w={200}
           ml={40}
           mt={20}
-          onClick={openT}
+          onClick={() => handleButtonClick('team')}
         >
           Teams
         </Button>
@@ -78,7 +79,7 @@ const Dashboard = () => {
           w={200}
           ml={40}
           mt={20}
-          onClick={openP}
+          onClick={() => handleButtonClick('project')}
         >
           Project
         </Button>
@@ -88,13 +89,17 @@ const Dashboard = () => {
           w={200}
           ml={40}
           mt={20}
-          onClick={openW}
+          onClick={() => handleButtonClick('workspace')}
         >
           Workspace
         </Button>
       </AppShell.Navbar>
 
-      <AppShell.Main></AppShell.Main>
+      <AppShell.Main>
+        {activeSection === 'team' && <Teams />}
+        {activeSection === 'project' && <ProjectList />}
+        {activeSection === 'workspace' && <WorkspaceList />}
+      </AppShell.Main>
     </AppShell>
   );
 };

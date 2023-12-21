@@ -82,10 +82,11 @@ const logout = () => {
   signOut(auth);
 };
 
-const createTeam = async (teamName) => {
+const createTeam = async (name, email) => {
   try {
     await addDoc(collection(db, 'teams'), {
-      teamName: teamName,
+      name: name,
+      email: email,
     });
   } catch (err) {
     alert(err);

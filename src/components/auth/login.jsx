@@ -27,12 +27,16 @@ const Login = () => {
   const [errors] = useState({});
   const [user, loading] = useAuthState(auth);
   const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) {
       return;
     }
   }, [user, loading]);
+  const hanldeClick = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <Stack align="center" justify="center" className="mt-32 mb-32">
@@ -78,7 +82,7 @@ const Login = () => {
             color="#247e7d"
             w={350}
             className=" mt-5"
-            onClick={'/dashboard'}
+            onClick={hanldeClick}
           >
             SIGN IN
           </Button>

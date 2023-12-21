@@ -17,6 +17,7 @@ import Home from './components/home/home';
 import Header from './components/layout/header';
 import ProjectList from './components/project/project-list';
 import Dashboard from './components/dashboard/dashboard';
+import Teams from './components/team/all-team';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard />,
+  },
+  {
+    path: '/all-team',
+    element: <Teams />,
   },
 ]);
 function App() {

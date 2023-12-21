@@ -19,48 +19,46 @@ const CreateProject = () => {
   };
 
   return (
-    <Card shadow="md">
-      <form onSubmit={handleProject}>
-        <Text className="text-center">Create a New Project</Text>
-        <Box>
-          <TextInput
-            type="text"
-            name="title"
-            label="Project Title"
-            value={title}
-            error={error.teamName}
-            placeholder="Enter project title"
-            required
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <Textarea
-            name="projectContent"
-            label="Project Content"
-            value={projectContent}
-            error={error.projectContent}
-            placeholder="Enter project content"
-            required
-            onChange={(e) => {
-              setProjectContent(e.target.value);
-            }}
-          />
-        </Box>
+    <form onSubmit={handleProject}>
+      <Text className="text-center">Create a New Project</Text>
+      <Box>
+        <TextInput
+          type="text"
+          name="title"
+          label="Project Title"
+          value={title}
+          error={error.title}
+          placeholder="Enter project title"
+          required
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+      </Box>
+      <Box>
+        <Textarea
+          name="projectContent"
+          label="Project Content"
+          value={projectContent}
+          error={error.projectContent}
+          placeholder="Enter project content"
+          required
+          onChange={(e) => {
+            setProjectContent(e.target.value);
+          }}
+        />
+      </Box>
 
-        <Button
-          w={'100%'}
-          type="submit"
-          mt={10}
-          color="#247e7d"
-          onClick={handleProjectList}
-        >
-          Create
-        </Button>
-      </form>
-    </Card>
+      <Button
+        w={'100%'}
+        type="submit"
+        mt={10}
+        color="#247e7d"
+        onClick={handleProjectList}
+      >
+        Create
+      </Button>
+    </form>
   );
 };
 

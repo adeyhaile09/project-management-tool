@@ -1,15 +1,23 @@
-import { Button, Modal, Stack, TextInput } from '@mantine/core';
+import { Button, Modal, Stack, TextInput, rem } from '@mantine/core';
 import React, { useState } from 'react';
 import { createTeam } from '../../config/firebase';
 import { useDisclosure } from '@mantine/hooks';
+import { useNavigate } from 'react-router-dom';
+import { IconAt } from '@tabler/icons-react';
 
 const AddTeam = () => {
-  const [teamName, setName] = useState('');
+  const icon = <IconAt style={{ width: rem(16), height: rem(16) }} />;
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [error] = useState({});
+  const navigate = useNavigate();
 
   const handleCreateTeam = (e) => {
     e.preventDefault();
-    createTeam(teamName);
+    createTeam(name, email);
+  };
+  const handleClick = () => {
+    navigate('/all-team');
   };
 
   return (
@@ -18,14 +26,31 @@ const AddTeam = () => {
         <TextInput
           name="teamName"
           label="Team Name"
-          error={error.teamName}
+          error={error.name}
           placeholder="Enter team name"
           required
           onChange={(e) => {
             setName(e.target.value);
           }}
         />
-        <Button w={'100%'} type="submit" color="#247e7d" mt={10}>
+        <TextInput
+          mt="md"
+          rightSectionPointerEvents="none"
+          rightSection={icon}
+          label="Your email"
+          required
+          placeholder="Your email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <Button
+          w={'100%'}
+          type="submit"
+          color="#247e7d"
+          mt={10}
+          // onClick={handleClick}
+        >
           Submit
         </Button>
       </form>
